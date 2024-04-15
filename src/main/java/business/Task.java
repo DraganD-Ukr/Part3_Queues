@@ -1,11 +1,23 @@
+package business;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class Task implements Comparable<Task>{
 
+    /**
+     * Owner of the task.
+     */
     private String owner;
+
+    /**
+     * Description of the task.
+     */
     private String description;
 
+    /**
+     * Deadline of the task.
+     */
     private LocalDate deadline;
 
 
@@ -43,6 +55,12 @@ public class Task implements Comparable<Task>{
         }
     }
 
+    /**
+     * Helper method to check if deadline is valid (Date can not be equal or less than today's date).
+     *
+     * @param deadline deadline to validate.
+     * @return boolean indicating validation.
+     */
     private boolean validateDeadline(LocalDate deadline){
         if (deadline.compareTo(LocalDate.now()) <= 0){
             throw new IllegalArgumentException("Deadline can not be equal or less less than today's date");
@@ -67,7 +85,7 @@ public class Task implements Comparable<Task>{
 
     @Override
     public String toString() {
-        return "Task{" +
+        return "business.Task{" +
                 "owner='" + owner + '\'' +
                 ", description='" + description + '\'' +
                 ", deadline=" + deadline +

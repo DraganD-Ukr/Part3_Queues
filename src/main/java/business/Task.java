@@ -62,7 +62,7 @@ public class Task implements Comparable<Task>{
      * @return boolean indicating validation.
      */
     private boolean validateDeadline(LocalDate deadline){
-        if (deadline.compareTo(LocalDate.now()) <= 0){
+        if (!deadline.isAfter(LocalDate.now())){
             throw new IllegalArgumentException("Deadline can not be equal or less less than today's date");
         } else {
             return true;
@@ -85,7 +85,7 @@ public class Task implements Comparable<Task>{
 
     @Override
     public String toString() {
-        return "business.Task{" +
+        return "Task{" +
                 "owner='" + owner + '\'' +
                 ", description='" + description + '\'' +
                 ", deadline=" + deadline +
@@ -97,10 +97,10 @@ public class Task implements Comparable<Task>{
     public int compareTo(Task o) {
         if (this.deadline.isEqual(o.getDeadline())){
             return 0;
-        } else if (this.deadline.isAfter(o.getDeadline())) {
-            return 1;
-        } else {
+        } else if (this.deadline.isBefore(o.getDeadline())) {
             return -1;
+        } else {
+            return 1;
         }
     }
 

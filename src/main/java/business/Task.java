@@ -85,7 +85,7 @@ public class Task implements Comparable<Task>{
 
     @Override
     public String toString() {
-        return "business.Task{" +
+        return "Task{" +
                 "owner='" + owner + '\'' +
                 ", description='" + description + '\'' +
                 ", deadline=" + deadline +

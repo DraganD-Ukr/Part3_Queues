@@ -9,7 +9,7 @@ public class BoundedPriorityQueueSet {
     /**
      * Maximum size of the queue.
      */
-    private final int maxSize;
+    public final int maxSize;
 
     /**
      * Queue, implemented using composition (Java's LinkedList).
@@ -97,8 +97,8 @@ public class BoundedPriorityQueueSet {
         int pos = 0;
 
         for (Task t : queue) {
-            if (t.equals(task)) {
-                return false;
+            if (task.compareTo(t) >= 0) {
+                break;
             }
             pos++;
         }
@@ -114,18 +114,18 @@ public class BoundedPriorityQueueSet {
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
-        return queue.peek();
+        return queue.getFirst();
     }
 
     /**
-     * Safe version of element() method: returns first element in a queue without deleting it OR null if the queue is empty.
+     * Gets a first Task in a queue without deleting it.
      * @return first Task object in a queue, if it's not empty.
      */
     public Task peek(){
         if (isEmpty()) {
-            return null;
+           return null;
         }
-        return queue.peek();
+        return queue.getFirst();
     }
 
     /**

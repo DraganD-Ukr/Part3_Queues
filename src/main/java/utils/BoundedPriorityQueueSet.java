@@ -2,6 +2,7 @@ package utils;
 
 import business.Task;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 public class BoundedPriorityQueueSet {
 
@@ -104,5 +105,51 @@ public class BoundedPriorityQueueSet {
         queue.add(pos, task);
         return true;
     }
+
+    /**
+     * "Get" method: returns first element in a queue without deleting it.
+     * @return first Task object in a queue, if it's not empty.
+     */
+    public Task element(){
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        return queue.peek();
+    }
+
+    /**
+     * Safe version of element() method: returns first element in a queue without deleting it OR null if the queue is empty.
+     * @return first Task object in a queue, if it's not empty.
+     */
+    public Task peek(){
+        if (isEmpty()) {
+            return null;
+        }
+        return queue.peek();
+    }
+
+    /**
+     * Removes and returns first element in a queue.
+     * @return first Task in a queue.
+     */
+    public Task remove(){
+        if (isEmpty()){
+            throw new NoSuchElementException();
+        }
+        return queue.removeFirst();
+    }
+
+    /**
+     * Safe version of remove(): Removes and returns first element in a queue OR null if it's empty.
+     * @return first Task in a queue.
+     */
+    public Task poll(){
+        if (isEmpty()){
+            return null;
+        }
+        return queue.removeFirst();
+    }
+
+
 
 }

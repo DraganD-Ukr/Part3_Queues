@@ -95,13 +95,7 @@ public class Task implements Comparable<Task>{
 
     @Override
     public int compareTo(Task o) {
-        if (this.deadline.isEqual(o.getDeadline())){
-            return 0;
-        } else if (this.deadline.isBefore(o.getDeadline())) {
-            return -1;
-        } else {
-            return 1;
-        }
+        return this.compareTo(o.getDeadline);
     }
 
 }
